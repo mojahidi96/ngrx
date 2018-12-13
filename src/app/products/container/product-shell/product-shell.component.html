@@ -1,8 +1,17 @@
 <div class="row">
   <div class="col-md-4">
-    {{error}}
-    <app-product-list [products]="products$ | async">
+    {{ error }}
+    <app-product-list
+      [products]="products$ | async"
+      [displayCode]="displayCode$ | async"
+      (checked)="changeChecked($event)"
+      (addProduct)="addNewProduct()"
+    >
     </app-product-list>
   </div>
-  <div class="col-md-8"><app-product-edit></app-product-edit></div>
+  <div class="col-md-8">
+    <app-product-edit
+      [selectedProduct]="newAddProduct$ | async"
+    ></app-product-edit>
+  </div>
 </div>

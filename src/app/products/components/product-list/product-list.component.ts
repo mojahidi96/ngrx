@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Product } from "../../product";
+import { checkAndUpdateDirectiveDynamic } from "@angular/core/src/view/provider";
 
 @Component({
   selector: "app-product-list",
@@ -8,9 +9,11 @@ import { Product } from "../../product";
 })
 export class ProductListComponent implements OnInit {
   pageTitle = "Products";
-  displayCode: boolean = true;
+  @Input() displayCode: boolean;
   @Input() products;
+  @Output() addProduct = new EventEmitter<Product>();
   selectedProduct: Product;
+  @Output() checked = new EventEmitter<boolean>();
   constructor() {}
 
   ngOnInit() {
@@ -21,6 +24,10 @@ export class ProductListComponent implements OnInit {
   }
   check(event) {
     console.log(event.target.checked);
-    this.displayCode = event.target.checked;
+    // this.displayCode = event.target.checked;
+    this.checked.emit(event.target.checked);
+  }
+  newProduct() {
+    this.addProduct.emit();
   }
 }

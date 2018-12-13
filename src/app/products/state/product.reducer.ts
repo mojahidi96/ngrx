@@ -18,6 +18,11 @@ export function reducer(
   action: productAction
 ): ProductState {
   switch (action.type) {
+    case productActionType.ToggleProductCode:
+      return {
+        ...state,
+        showProductCode: action.payload
+      };
     case productActionType.ProductsLoadSucces:
       return {
         ...state,
@@ -28,6 +33,11 @@ export function reducer(
       return {
         ...state,
         error: action.payload
+      };
+    case productActionType.AddNewProduct:
+      return {
+        ...state,
+        currentProductId: action.payload
       };
     default:
       return state;

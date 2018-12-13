@@ -9,6 +9,8 @@ import { ProductShellComponent } from "./products/container/product-shell/produc
 import { ProductModule } from "./products/product.module";
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
+import { environment } from "src/environments/environment";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +23,11 @@ import { EffectsModule } from "@ngrx/effects";
     AppRoutingModule,
     ProductModule,
     StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument({
+      name: "Mojahid",
+      maxAge: 25,
+      logOnly: environment.production
+    }),
     EffectsModule.forRoot([])
   ],
 

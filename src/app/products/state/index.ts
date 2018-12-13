@@ -14,3 +14,13 @@ export const apiFail = createSelector(
   getProductFeatureState,
   state => state.error
 );
+
+export const getProductCode = createSelector(
+  getProductFeatureState,
+  state => state.showProductCode
+);
+
+export const addNewProduct = createSelector(
+  getProductFeatureState,
+  state => state.currentProductId
+);
